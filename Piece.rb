@@ -31,6 +31,8 @@ class Piece
         @pos = val
     end
 
+    update
+
 
     # def to_s #returns a string representation of the piece    
 
