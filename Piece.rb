@@ -1,4 +1,5 @@
 class Piece
+    attr_reader :color, :board, :pos
     def initialize(color, board, pos)
         @color = color
         @board = board
@@ -20,8 +21,9 @@ class Piece
         MOVES.each do |(dx,dy)|
             new_pos = [pos_x + dx, pos_y +dy]
             if new_pos.all? do |coord| 
-                coord.between?(0,7) && (board[coord].empty? || #something about colors ) #also .empty? == true, cannot be your own color, and can be a different color but nothing behind it. 
+                if coord.between?(0,7) 
                     valid_moves << new_pos
+                end 
             end
         end
         valid_moves
