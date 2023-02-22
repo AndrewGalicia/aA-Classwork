@@ -1,4 +1,5 @@
 require_relative './Piece.rb'
+require_relative '../Slidable.rb'
 class Board
     attr_reader :rows
     def initialize 
