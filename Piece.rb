@@ -5,9 +5,24 @@ class Piece
         @pos = pos
     end
 
-    # def to_s #turn instance into a string
+    def to_s
+        " #{SYMBOL} "
+    end
 
-    # end
+    def empty?
+        false
+    end
+
+    def valid_moves
+        moves.reject {  }
+    end
+
+    def pos=(val)
+
+    end
+
+
+    # def to_s #returns a string representation of the piece    
 
 
 

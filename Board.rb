@@ -55,5 +55,6 @@ class Board
     private 
     
     # @null_piece = Null_piece.new 
+
     
 end
