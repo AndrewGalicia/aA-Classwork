@@ -14,11 +14,11 @@ module Slidable
 
     def moves
         moves = []
-        # move_dirs.each do |dx, dy|
+       self.move_dirs.each do |dir|
+        moves << self.grow_unblocked_moves_in_dir(dir)
+       end
 
-        # end 
-
-        moves
+        moves.flatten 
     end
 
     private
@@ -28,24 +28,17 @@ module Slidable
     end
 
     def grow_unblocked_moves_in_dir(dx, dy)
-        # this is the direction of the piece
-        moves_arr = [] # this is the pieces moves
-        self.pos
+       
+        moves_arr = [] 
+        pos_x, pos_y = @pos
+        new_pos = [pos_x + dx, pos_y +dy] 
+        while new_pos.all? {|coord| coord.between(0,7)} && self.color != @board[new_position].color
+            moves_arr << new_pos
+            break if !@board[new_pos].empty?  
+            pox_x, pos_y = new_pos
+            new_pos = [pos_x + dx, pos_y + dy]    
+        end
+
+        moves_arr
     end 
-    # implementing on the subclasses, returns the direction of the piece.
-
-    # def valid_moves
-    #     # moves.select { |move| move.empty}
-    #     valid_moves = []
-    #     pos_x, pos_y = @pos
-    #     MOVES.each do |(dx,dy)|
-    #         new_pos = [pos_x + dx, pos_y +dy]
-    #         if new_pos.all? do |coord| 
-    #             coord.between?(0,7) && (board[coord].empty? || #something about colors ) #also .empty? == true, cannot be your own color, and can be a different color but nothing behind it. 
-    #                 valid_moves << new_pos
-    #         end
-    #     end
-    #     valid_moves
-    # end
-
 end

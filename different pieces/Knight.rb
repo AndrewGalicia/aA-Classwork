@@ -12,7 +12,7 @@ class Knight
     protected
 
     def move_diffs
-
+        KNIGHT_MOVES = [[1,2],[1,-2],[-1.2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]]
     end
 
 end
