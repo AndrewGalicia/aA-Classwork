@@ -14,11 +14,9 @@ module Slidable
 
     def moves
         moves = []
-        # move_dirs.each do |dx, dy|
-
-        # end 
-
-        moves
+        move_dirs.each do |dir|
+            moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
+        end
     end
 
     private
@@ -28,10 +26,20 @@ module Slidable
     end
 
     def grow_unblocked_moves_in_dir(dx, dy)
-        # this is the direction of the piece
-        moves_arr = [] # this is the pieces moves
-        self.pos
+        # returns an array of positions that are unblocked in the direction of dx, dy
+        # until it hits a piece or the edge of the board
+        moves_arr = []
+        pos_x, pos_y = @pos
+        new_pos = [pos_x + dx, pos_y + dy]
+        while new_pos.all? { |coord| coord.between?(0,7) } && (@board[new_pos].empty? || @board[new_pos].color != @color)
+            
+            moves_arr << new_pos
+            new_pos = [pos_x + dx, pos_y + dy]
+        end
+
+        moves_arr
     end 
+
     # implementing on the subclasses, returns the direction of the piece.
 
     # def valid_moves

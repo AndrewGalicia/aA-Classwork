@@ -7,7 +7,9 @@ class Pawn < Piece
     end
 
     
-
+    def moves
+        # moves = 
+    end 
 
 
 end
